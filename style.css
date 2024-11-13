@@ -1,20 +1,4 @@
 :root {
-    --bg-primary: #ffffff;
-    --bg-secondary: #f8f8f8;
-    --text-primary: #333333;
-    --text-secondary: #666666;
-    --accent-color: #007AFF;
-    --accent-hover: #0056b3;
-    --border-color: #eee;
-    --success-bg: #f0f9f0;
-    --success-border: #d4e8d4;
-    --error-bg: #fff5f5;
-    --error-border: #fed7d7;
-    --button-success: #28a745;
-    --button-success-hover: #218838;
-}
-
-[data-theme="dark"] {
     --bg-primary: #1a1a1a;
     --bg-secondary: #2d2d2d;
     --text-primary: #ffffff;
@@ -41,6 +25,7 @@ body {
     align-items: center;
     padding: 20px;
     transition: background-color 0.3s, color 0.3s;
+    overflow-x: hidden; /* Prevent horizontal overflow */
 }
 
 .container {
@@ -54,21 +39,6 @@ body {
     overflow-x: hidden; /* Prevent horizontal overflow */
 }
 
-body {
-    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-    margin: 0;
-    min-height: 100vh;
-    background-color: var(--bg-primary);
-    color: var(--text-primary);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    transition: background-color 0.3s, color 0.3s;
-    overflow-x: hidden; /* Prevent horizontal overflow */
-}
-
-/* Remove the existing theme-toggle positioning */
 .theme-toggle {
     padding: 10px;
     border-radius: 50%;
