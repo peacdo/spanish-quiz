@@ -8,8 +8,7 @@
 </head>
 <body>
     <button id="theme-toggle" class="theme-toggle" onclick="toggleTheme()">🌙</button>
-    <button id="leaderboard-btn" class="theme-toggle" style="left: 20px;">🏆</button>
-
+    
     <div class="container">
         <div class="progress">
             Question <span id="current">1</span> of <span id="total">60</span>
@@ -23,16 +22,11 @@
             <div class="score">
                 Score: <span id="score">0</span>/60
             </div>
-            <div id="answers-review">
-            </div>
+            <div id="answers-review"></div>
             <button id="restart">Restart Quiz</button>
         </div>
     </div>
 
-    <!-- SweetAlert2 for nice prompts -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    
-    <!-- Firebase -->
-    <script type="module" src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

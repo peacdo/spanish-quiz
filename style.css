@@ -1,4 +1,20 @@
 :root {
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8f8f8;
+    --text-primary: #333333;
+    --text-secondary: #666666;
+    --accent-color: #007AFF;
+    --accent-hover: #0056b3;
+    --border-color: #eee;
+    --success-bg: #f0f9f0;
+    --success-border: #d4e8d4;
+    --error-bg: #fff5f5;
+    --error-border: #fed7d7;
+    --button-success: #28a745;
+    --button-success-hover: #218838;
+}
+
+[data-theme="dark"] {
     --bg-primary: #1a1a1a;
     --bg-secondary: #2d2d2d;
     --text-primary: #ffffff;
@@ -6,12 +22,12 @@
     --accent-color: #0a84ff;
     --accent-hover: #409cff;
     --border-color: #404040;
-    --accent-success: #2ea043;
-    --accent-success-hover: #3fb950;
     --success-bg: #0a2f0a;
     --success-border: #1a421a;
     --error-bg: #2f0a0a;
     --error-border: #421a1a;
+    --button-success: #2ea043;
+    --button-success-hover: #3fb950;
 }
 
 body {
@@ -25,7 +41,6 @@ body {
     align-items: center;
     padding: 20px;
     transition: background-color 0.3s, color 0.3s;
-    overflow-x: hidden;
 }
 
 .container {
@@ -35,11 +50,12 @@ body {
     border: 1px solid var(--border-color);
     border-radius: 8px;
     padding: 2rem;
-    margin: 1rem;
-    overflow-x: hidden;
 }
 
 .theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
     padding: 10px;
     border-radius: 50%;
     border: none;
@@ -51,14 +67,6 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    position: fixed;
-    right: 20px;
-    top: 20px;
-    transition: background-color 0.3s;
-}
-
-.theme-toggle:hover {
-    background: var(--accent-hover);
 }
 
 .progress {
@@ -124,7 +132,7 @@ button {
     color: white;
     border: none;
     border-radius: 8px;
-    transition: background-color 0.2s;
+    transition: all 0.2s;
 }
 
 button:hover:not(:disabled) {
@@ -174,151 +182,9 @@ button:disabled {
 }
 
 #restart {
-    background-color: var(--accent-success);
+    background-color: var(--button-success);
 }
 
 #restart:hover {
-    background-color: var(--accent-success-hover);
-}
-
-.leaderboard {
-    margin: 2rem 0;
-    padding: 1rem;
-    background: var(--bg-secondary);
-    border-radius: 8px;
-    border: 1px solid var(--border-color);
-}
-
-.leaderboard h3 {
-    text-align: center;
-    margin-bottom: 1rem;
-}
-
-.leaderboard table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 1rem 0;
-}
-
-.leaderboard th,
-.leaderboard td {
-    padding: 0.75rem;
-    text-align: left;
-    border-bottom: 1px solid var(--border-color);
-}
-
-.leaderboard th {
-    font-weight: bold;
-    color: var(--text-secondary);
-}
-
-.completion-time {
-    text-align: center;
-    font-size: 1.2rem;
-    margin: 1rem 0;
-    color: var(--accent-color);
-    font-weight: bold;
-}
-
-/* Adding some responsive styles */
-@media (max-width: 480px) {
-    .leaderboard table {
-        font-size: 0.9rem;
-    }
-    
-    .leaderboard th,
-    .leaderboard td {
-        padding: 0.5rem;
-    }
-}
-
-.leaderboard-btn:hover {
-    background: var(--accent-hover);
-    transform: translateY(-2px);
-}
-
-.leaderboard-modal {
-    padding: 1rem;
-}
-
-.leaderboard-modal table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 1rem 0;
-    background: var(--bg-primary);
-}
-
-.leaderboard-modal th,
-.leaderboard-modal td {
-    padding: 0.75rem;
-    text-align: left;
-    border-bottom: 1px solid var(--border-color);
-}
-
-.leaderboard-modal th {
-    font-weight: bold;
-    background: var(--bg-secondary);
-    color: var(--text-secondary);
-}
-
-.leaderboard-modal tr:hover {
-    background: var(--bg-secondary);
-}
-
-.no-scores {
-    text-align: center;
-    color: var(--text-secondary);
-    font-size: 1.1rem;
-    margin: 2rem 0;
-}
-
-/* Medal colors for top 3 */
-.leaderboard-modal tr:nth-child(1) td:first-child {
-    color: gold;
-    font-weight: bold;
-}
-
-.leaderboard-modal tr:nth-child(2) td:first-child {
-    color: silver;
-    font-weight: bold;
-}
-
-.leaderboard-modal tr:nth-child(3) td:first-child {
-    color: #cd7f32;
-    font-weight: bold;
-}
-
-/* Responsive styles */
-@media (max-width: 600px) {
-    .leaderboard-modal {
-        padding: 0.5rem;
-    }
-    
-    .leaderboard-modal table {
-        font-size: 0.9rem;
-    }
-    
-    .leaderboard-modal th,
-    .leaderboard-modal td {
-        padding: 0.5rem;
-    }
-    
-    .leaderboard-btn {
-        padding: 8px 16px;
-        font-size: 0.9rem;
-    }
-}
-
-/* Dark mode support for SweetAlert */
-[data-theme="dark"] .swal2-popup {
-    background: var(--bg-primary);
-    color: var(--text-primary);
-}
-
-[data-theme="dark"] .swal2-title {
-    color: var(--text-primary);
-}
-
-[data-theme="dark"] .swal2-close {
-    color: var(--text-secondary);
+    background-color: var(--button-success-hover);
 }
