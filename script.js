@@ -319,3 +319,29 @@ document.addEventListener('DOMContentLoaded', () => {
     // Add leaderboard button click handler
     document.getElementById('leaderboard-btn').addEventListener('click', showLeaderboard);
 });
+
+import React from 'react';
+
+const HeaderButtons = () => {
+  return (
+    <>
+      <button 
+        className="fixed top-5 left-5 w-10 h-10 rounded-full border-none bg-blue-500 hover:bg-blue-600 text-white cursor-pointer flex items-center justify-center transition-all duration-200" 
+        id="leaderboard-btn"
+        aria-label="Show leaderboard"
+      >
+        🏆
+      </button>
+
+      <button 
+        className="fixed top-5 right-5 w-10 h-10 rounded-full border-none bg-blue-500 hover:bg-blue-600 text-white cursor-pointer flex items-center justify-center transition-all duration-200" 
+        id="theme-toggle"
+        aria-label="Toggle theme"
+      >
+        🌙
+      </button>
+    </>
+  );
+};
+
+export default HeaderButtons;
