@@ -6,12 +6,12 @@
     --accent-color: #0a84ff;
     --accent-hover: #409cff;
     --border-color: #404040;
+    --accent-success: #2ea043;
+    --accent-success-hover: #3fb950;
     --success-bg: #0a2f0a;
     --success-border: #1a421a;
     --error-bg: #2f0a0a;
     --error-border: #421a1a;
-    --button-success: #2ea043;
-    --button-success-hover: #3fb950;
 }
 
 body {
@@ -25,7 +25,7 @@ body {
     align-items: center;
     padding: 20px;
     transition: background-color 0.3s, color 0.3s;
-    overflow-x: hidden; /* Prevent horizontal overflow */
+    overflow-x: hidden;
 }
 
 .container {
@@ -36,7 +36,7 @@ body {
     border-radius: 8px;
     padding: 2rem;
     margin: 1rem;
-    overflow-x: hidden; /* Prevent horizontal overflow */
+    overflow-x: hidden;
 }
 
 .theme-toggle {
@@ -51,10 +51,14 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    position: fixed;
+    right: 20px;
+    top: 20px;
+    transition: background-color 0.3s;
 }
 
-#theme-toggle {
-    right: 20px;
+.theme-toggle:hover {
+    background: var(--accent-hover);
 }
 
 .progress {
@@ -120,7 +124,7 @@ button {
     color: white;
     border: none;
     border-radius: 8px;
-    transition: all 0.2s;
+    transition: background-color 0.2s;
 }
 
 button:hover:not(:disabled) {
@@ -170,11 +174,11 @@ button:disabled {
 }
 
 #restart {
-    background-color: var(--button-success);
+    background-color: var(--accent-success);
 }
 
 #restart:hover {
-    background-color: var(--button-success-hover);
+    background-color: var(--accent-success-hover);
 }
 
 .leaderboard {
