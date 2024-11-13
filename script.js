@@ -4,6 +4,58 @@ let quizQuestions;
 let startTime;
 let endTime;
 
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js';
+import { getFirestore, collection, addDoc, query, orderBy, limit, getDocs } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js';
+
+const firebaseConfig = {
+    apiKey: "AIzaSyDophykOqVYKV7t_YthU3vHzk-OvvrJJeE",
+    authDomain: "spanish-quiz-fe087.firebaseapp.com",
+    projectId: "spanish-quiz-fe087",
+    storageBucket: "spanish-quiz-fe087.firebasestorage.app",
+    messagingSenderId: "834025143539",
+    appId: "1:834025143539:web:2fa8d34545a0a75894cb86",
+    measurementId: "G-EVEJ2WXRWX"
+  };
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+// Function to add perfect score to leaderboard
+async function addToLeaderboard(name, timeInSeconds) {
+  try {
+    const docRef = await addDoc(collection(db, "leaderboard"), {
+      name: name,
+      score: 60,
+      timeInSeconds: timeInSeconds,
+      timestamp: new Date().toISOString()
+    });
+    console.log("Document written with ID: ", docRef.id);
+    return true;
+  } catch (e) {
+    console.error("Error adding to leaderboard: ", e);
+    return false;
+  }
+}
+
+// Function to get leaderboard data
+async function getLeaderboard() {
+  const leaderboardQuery = query(
+    collection(db, "leaderboard"),
+    orderBy("timeInSeconds", "asc"),
+    limit(10)
+  );
+  
+  const querySnapshot = await getDocs(leaderboardQuery);
+  const leaderboardData = [];
+  
+  querySnapshot.forEach((doc) => {
+    leaderboardData.push(doc.data());
+  });
+  
+  return leaderboardData;
+}
+
 // Theme toggle
 function toggleTheme() {
     const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
@@ -101,7 +153,9 @@ function nextQuestion() {
     document.getElementById('current').textContent = currentQuestion + 1;
 }
 
-function showResults() {
+// Replace the showResults function in script.js with this version
+
+async function showResults() {
     endTime = new Date();
     const timeTaken = Math.floor((endTime - startTime) / 1000);
     
@@ -126,6 +180,15 @@ function showResults() {
     
     document.getElementById('score').textContent = score;
     
+    // Perfect score handling
+    if (score === 60) {
+        const name = await promptForName();
+        if (name) {
+            await addToLeaderboard(name, timeTaken);
+            await updateLeaderboardDisplay();
+        }
+    }
+    
     const answersReviewDiv = document.getElementById('answers-review');
     const answersReviewHtml = answersReview.map((review, index) => `
         <div class="answer-review ${review.isCorrect ? 'correct' : 'incorrect'}">
@@ -135,9 +198,65 @@ function showResults() {
             <p><strong>Status:</strong> ${review.isCorrect ? '✅ Correct' : '❌ Incorrect'}</p>
         </div>
     `).join('');
-    answersReviewDiv.innerHTML = answersReviewHtml;
+    
+    // Add completion time
+    const timeHtml = `<p class="completion-time">Completion Time: ${formatTime(timeTaken)}</p>`;
+    
+    answersReviewDiv.innerHTML = timeHtml + answersReviewHtml;
 
     document.getElementById('restart').addEventListener('click', restartQuiz);
+}
+
+function formatTime(seconds) {
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = seconds % 60;
+    return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
+}
+
+async function promptForName() {
+    const name = await Swal.fire({
+        title: 'Perfect Score!',
+        text: 'Enter your name for the leaderboard:',
+        input: 'text',
+        inputAttributes: {
+            autocapitalize: 'off'
+        },
+        showCancelButton: true,
+        confirmButtonText: 'Submit',
+        showLoaderOnConfirm: true,
+        allowOutsideClick: () => !Swal.isLoading()
+    });
+    
+    return name.isConfirmed ? name.value : null;
+}
+
+async function updateLeaderboardDisplay() {
+    const leaderboardData = await getLeaderboard();
+    const leaderboardHtml = `
+        <div class="leaderboard">
+            <h3>Top Scores</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Name</th>
+                        <th>Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${leaderboardData.map((entry, index) => `
+                        <tr>
+                            <td>${index + 1}</td>
+                            <td>${entry.name}</td>
+                            <td>${formatTime(entry.timeInSeconds)}</td>
+                        </tr>
+                    `).join('')}
+                </tbody>
+            </table>
+        </div>
+    `;
+    
+    document.getElementById('answers-review').insertAdjacentHTML('beforebegin', leaderboardHtml);
 }
 
 function restartQuiz() {
