@@ -37,19 +37,31 @@ body {
     background-color: var(--bg-primary);
     color: var(--text-primary);
     display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
+    flex-direction: column;
+    padding: 0;
     transition: background-color 0.3s, color 0.3s;
 }
 
 .container {
+    flex: 1;
     width: 100%;
     max-width: 600px;
+    margin: 1rem auto;
     background: var(--bg-primary);
     border: 1px solid var(--border-color);
     border-radius: 8px;
-    padding: 2rem;
+    padding: 1.5rem;
+    box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+    .container {
+        margin: 0.5rem auto;
+        padding: 1rem;
+        border-radius: 0;
+        border-left: none;
+        border-right: none;
+    }
 }
 
 .theme-toggle {
@@ -67,12 +79,13 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 1000;
 }
 
 .progress {
     text-align: center;
-    margin-bottom: 2rem;
-    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
     color: var(--text-secondary);
 }
 
@@ -87,25 +100,26 @@ body {
 
 h2, h3 {
     color: var(--text-primary);
-    font-size: 1.5rem;
-    margin-bottom: 1.5rem;
+    font-size: 1.25rem;
+    margin-bottom: 1.25rem;
 }
 
 .options {
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    margin: 1.5rem auto;
-    max-width: 400px;
+    gap: 10px;
+    margin: 1.25rem auto;
+    max-width: 100%;
+    padding: 0 0.5rem;
 }
 
 .option {
-    padding: 1rem;
+    padding: 0.875rem;
     border: 2px solid var(--border-color);
     border-radius: 8px;
     cursor: pointer;
     transition: all 0.2s;
-    font-size: 1.1rem;
+    font-size: 1rem;
     text-align: center;
     background: var(--bg-primary);
     color: var(--text-primary);
@@ -124,9 +138,11 @@ h2, h3 {
 
 button {
     display: block;
-    margin: 1.5rem auto;
+    width: calc(100% - 2rem);
+    max-width: 300px;
+    margin: 1.25rem auto;
     padding: 12px 24px;
-    font-size: 1.1rem;
+    font-size: 1rem;
     cursor: pointer;
     background-color: var(--accent-color);
     color: white;
@@ -148,11 +164,12 @@ button:disabled {
 #results {
     display: none;
     text-align: center;
+    padding: 0 1rem;
 }
 
 .score {
-    font-size: 2rem;
-    margin: 2rem 0;
+    font-size: 1.75rem;
+    margin: 1.5rem 0;
     color: var(--text-primary);
 }
 
@@ -175,6 +192,7 @@ button:disabled {
 
 .answer-review p {
     margin: 0.5rem 0;
+    font-size: 0.95rem;
 }
 
 .answer-review strong {
@@ -187,4 +205,73 @@ button:disabled {
 
 #restart:hover {
     background-color: var(--button-success-hover);
+}
+
+.footer {
+    margin-top: auto;
+    padding: 1rem 0;
+    text-align: center;
+    background-color: var(--bg-secondary);
+    border-top: 1px solid var(--border-color);
+    width: 100%;
+}
+
+.footer-message {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    margin: 0;
+    padding: 0 1rem;
+}
+
+/* Add touch-friendly adjustments */
+@media (max-width: 768px) {
+    .option {
+        padding: 1rem;
+        margin: 0;
+        -webkit-tap-highlight-color: transparent;
+    }
+    
+    .option:active {
+        background-color: var(--accent-color);
+        color: white;
+    }
+    
+    button {
+        padding: 14px 24px;
+        width: calc(100% - 1rem);
+    }
+    
+    .theme-toggle {
+        top: 10px;
+        right: 10px;
+    }
+    
+    h2, h3 {
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+    }
+    
+    .score {
+        font-size: 1.5rem;
+    }
+}
+
+/* Handle very small screens */
+@media (max-width: 320px) {
+    .container {
+        padding: 0.75rem;
+    }
+    
+    .options {
+        padding: 0 0.25rem;
+    }
+    
+    .option {
+        padding: 0.875rem;
+        font-size: 0.95rem;
+    }
+    
+    h2, h3 {
+        font-size: 1.1rem;
+    }
 }
