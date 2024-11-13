@@ -271,3 +271,51 @@ document.addEventListener('DOMContentLoaded', () => {
     initTheme();
     loadQuestions();
 });
+
+async function showLeaderboard() {
+    const leaderboardData = await getLeaderboard();
+    
+    Swal.fire({
+        title: 'Spanish Quiz Leaderboard 🏆',
+        html: `
+            <div class="leaderboard-modal">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Time</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${leaderboardData.map((entry, index) => `
+                            <tr>
+                                <td>${index + 1}</td>
+                                <td>${entry.name}</td>
+                                <td>${formatTime(entry.timeInSeconds)}</td>
+                                <td>${new Date(entry.timestamp).toLocaleDateString()}</td>
+                            </tr>
+                        `).join('')}
+                    </tbody>
+                </table>
+                ${leaderboardData.length === 0 ? '<p class="no-scores">No perfect scores yet. Will you be the first? 🎯</p>' : ''}
+            </div>
+        `,
+        width: '600px',
+        showCloseButton: true,
+        showConfirmButton: false,
+        customClass: {
+            container: 'leaderboard-modal-container'
+        }
+    });
+}
+
+// Update the DOM Content Loaded event listener
+document.addEventListener('DOMContentLoaded', () => {
+    initTheme();
+    loadQuestions();
+    
+    // Add leaderboard button click handler
+    document.getElementById('leaderboard-btn').addEventListener('click', showLeaderboard);
+});

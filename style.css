@@ -239,3 +239,112 @@ button:disabled {
         padding: 0.5rem;
     }
 }
+
+.leaderboard-btn {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    padding: 10px 20px;
+    border-radius: 20px;
+    border: none;
+    background: var(--accent-color);
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1rem;
+    transition: all 0.2s;
+    z-index: 1000;
+}
+
+.leaderboard-btn:hover {
+    background: var(--accent-hover);
+    transform: translateY(-2px);
+}
+
+.leaderboard-modal {
+    padding: 1rem;
+}
+
+.leaderboard-modal table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    background: var(--bg-primary);
+}
+
+.leaderboard-modal th,
+.leaderboard-modal td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.leaderboard-modal th {
+    font-weight: bold;
+    background: var(--bg-secondary);
+    color: var(--text-secondary);
+}
+
+.leaderboard-modal tr:hover {
+    background: var(--bg-secondary);
+}
+
+.no-scores {
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    margin: 2rem 0;
+}
+
+/* Medal colors for top 3 */
+.leaderboard-modal tr:nth-child(1) td:first-child {
+    color: gold;
+    font-weight: bold;
+}
+
+.leaderboard-modal tr:nth-child(2) td:first-child {
+    color: silver;
+    font-weight: bold;
+}
+
+.leaderboard-modal tr:nth-child(3) td:first-child {
+    color: #cd7f32;
+    font-weight: bold;
+}
+
+/* Responsive styles */
+@media (max-width: 600px) {
+    .leaderboard-modal {
+        padding: 0.5rem;
+    }
+    
+    .leaderboard-modal table {
+        font-size: 0.9rem;
+    }
+    
+    .leaderboard-modal th,
+    .leaderboard-modal td {
+        padding: 0.5rem;
+    }
+    
+    .leaderboard-btn {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Dark mode support for SweetAlert */
+[data-theme="dark"] .swal2-popup {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .swal2-title {
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .swal2-close {
+    color: var(--text-secondary);
+}
