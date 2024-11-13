@@ -21,39 +21,193 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// Function to add perfect score to leaderboard
-async function addToLeaderboard(name, timeInSeconds) {
-  try {
-    const docRef = await addDoc(collection(db, "leaderboard"), {
-      name: name,
-      score: 60,
-      timeInSeconds: timeInSeconds,
-      timestamp: new Date().toISOString()
-    });
-    console.log("Document written with ID: ", docRef.id);
-    return true;
-  } catch (e) {
-    console.error("Error adding to leaderboard: ", e);
-    return false;
-  }
+async function addToLeaderboard(name, score, timeInSeconds) {
+    try {
+        const docRef = await addDoc(collection(db, "leaderboard"), {
+            name: name,
+            score: score,
+            timeInSeconds: timeInSeconds,
+            timestamp: new Date().toISOString()
+        });
+        console.log("Document written with ID: ", docRef.id);
+        return true;
+    } catch (e) {
+        console.error("Error adding to leaderboard: ", e);
+        return false;
+    }
 }
 
-// Function to get leaderboard data
+// Update the leaderboard query to sort by score first, then time
 async function getLeaderboard() {
-  const leaderboardQuery = query(
-    collection(db, "leaderboard"),
-    orderBy("timeInSeconds", "asc"),
-    limit(10)
-  );
-  
-  const querySnapshot = await getDocs(leaderboardQuery);
-  const leaderboardData = [];
-  
-  querySnapshot.forEach((doc) => {
-    leaderboardData.push(doc.data());
-  });
-  
-  return leaderboardData;
+    const leaderboardQuery = query(
+        collection(db, "leaderboard"),
+        orderBy("score", "desc"),
+        orderBy("timeInSeconds", "asc"),
+        limit(10)
+    );
+    
+    const querySnapshot = await getDocs(leaderboardQuery);
+    const leaderboardData = [];
+    
+    querySnapshot.forEach((doc) => {
+        leaderboardData.push(doc.data());
+    });
+    
+    return leaderboardData;
+}
+
+// Update the showResults function to always prompt for name
+async function showResults() {
+    endTime = new Date();
+    const timeTaken = Math.floor((endTime - startTime) / 1000);
+    
+    let score = 0;
+    const answersReview = [];
+    
+    userAnswers.forEach((answer, index) => {
+        const isCorrect = answer === quizQuestions[index].correct;
+        if (isCorrect) score++;
+        
+        answersReview.push({
+            question: quizQuestions[index].question,
+            userAnswer: quizQuestions[index].options[answer],
+            correctAnswer: quizQuestions[index].options[quizQuestions[index].correct],
+            isCorrect: isCorrect
+        });
+    });
+    
+    document.getElementById('quiz').style.display = 'none';
+    const results = document.getElementById('results');
+    results.style.display = 'block';
+    
+    document.getElementById('score').textContent = score;
+    
+    // Always prompt for name, with a message based on the score
+    const name = await promptForName(score);
+    if (name) {
+        await addToLeaderboard(name, score, timeTaken);
+        await updateLeaderboardDisplay();
+    }
+    
+    const answersReviewDiv = document.getElementById('answers-review');
+    const answersReviewHtml = answersReview.map((review, index) => `
+        <div class="answer-review ${review.isCorrect ? 'correct' : 'incorrect'}">
+            <p><strong>Question ${index + 1}:</strong> ${review.question}</p>
+            <p><strong>Your answer:</strong> ${review.userAnswer}</p>
+            <p><strong>Correct answer:</strong> ${review.correctAnswer}</p>
+            <p><strong>Status:</strong> ${review.isCorrect ? '✅ Correct' : '❌ Incorrect'}</p>
+        </div>
+    `).join('');
+    
+    // Add completion time
+    const timeHtml = `<p class="completion-time">Completion Time: ${formatTime(timeTaken)}</p>`;
+    
+    answersReviewDiv.innerHTML = timeHtml + answersReviewHtml;
+    
+    document.getElementById('restart').addEventListener('click', restartQuiz);
+}
+
+// Update the prompt function to show appropriate messages based on score
+async function promptForName(score) {
+    let message = '';
+    if (score === 60) {
+        message = 'Perfect Score! 🎉';
+    } else if (score >= 45) {
+        message = 'Great job! 🌟';
+    } else if (score >= 30) {
+        message = 'Well done! 👍';
+    } else {
+        message = 'Thanks for playing! 😊';
+    }
+
+    const result = await Swal.fire({
+        title: message,
+        text: 'Enter your name for the leaderboard:',
+        input: 'text',
+        inputAttributes: {
+            autocapitalize: 'off'
+        },
+        showCancelButton: true,
+        confirmButtonText: 'Submit',
+        showLoaderOnConfirm: true,
+        allowOutsideClick: () => !Swal.isLoading()
+    });
+    
+    return result.isConfirmed ? result.value : null;
+}
+
+// Update the leaderboard display to show scores
+async function showLeaderboard() {
+    const leaderboardData = await getLeaderboard();
+    
+    Swal.fire({
+        title: 'Spanish Quiz Leaderboard 🏆',
+        html: `
+            <div class="leaderboard-modal">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Score</th>
+                            <th>Time</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${leaderboardData.map((entry, index) => `
+                            <tr>
+                                <td>${index + 1}</td>
+                                <td>${entry.name}</td>
+                                <td>${entry.score}/60</td>
+                                <td>${formatTime(entry.timeInSeconds)}</td>
+                                <td>${new Date(entry.timestamp).toLocaleDateString()}</td>
+                            </tr>
+                        `).join('')}
+                    </tbody>
+                </table>
+                ${leaderboardData.length === 0 ? '<p class="no-scores">No scores yet. Will you be the first? 🎯</p>' : ''}
+            </div>
+        `,
+        width: '600px',
+        showCloseButton: true,
+        showConfirmButton: false,
+        customClass: {
+            container: 'leaderboard-modal-container'
+        }
+    });
+}
+
+// Update the leaderboard display in results
+async function updateLeaderboardDisplay() {
+    const leaderboardData = await getLeaderboard();
+    const leaderboardHtml = `
+        <div class="leaderboard">
+            <h3>Top Scores</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Name</th>
+                        <th>Score</th>
+                        <th>Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${leaderboardData.map((entry, index) => `
+                        <tr>
+                            <td>${index + 1}</td>
+                            <td>${entry.name}</td>
+                            <td>${entry.score}/60</td>
+                            <td>${formatTime(entry.timeInSeconds)}</td>
+                        </tr>
+                    `).join('')}
+                </tbody>
+            </table>
+        </div>
+    `;
+    
+    document.getElementById('answers-review').insertAdjacentHTML('beforebegin', leaderboardHtml);
 }
 
 // Theme toggle
@@ -320,28 +474,3 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('leaderboard-btn').addEventListener('click', showLeaderboard);
 });
 
-import React from 'react';
-
-const HeaderButtons = () => {
-  return (
-    <>
-      <button 
-        className="fixed top-5 left-5 w-10 h-10 rounded-full border-none bg-blue-500 hover:bg-blue-600 text-white cursor-pointer flex items-center justify-center transition-all duration-200" 
-        id="leaderboard-btn"
-        aria-label="Show leaderboard"
-      >
-        🏆
-      </button>
-
-      <button 
-        className="fixed top-5 right-5 w-10 h-10 rounded-full border-none bg-blue-500 hover:bg-blue-600 text-white cursor-pointer flex items-center justify-center transition-all duration-200" 
-        id="theme-toggle"
-        aria-label="Toggle theme"
-      >
-        🌙
-      </button>
-    </>
-  );
-};
-
-export default HeaderButtons;
