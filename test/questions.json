@@ -1,0 +1,544 @@
+{
+    "questions": [
+        {
+            "question": "¿Qué número es: «52»?",
+            "options": [
+                "cinconta y dos",
+                "cincuenta y dos",
+                "cinco y dos"
+            ],
+            "correct": 1
+        },
+        {
+            "question": "Los sábados siempre yo _____ yoga. (hacer)",
+            "options": [
+                "hago",
+                "haco",
+                "hico"
+            ],
+            "correct": 0
+        },
+        {
+            "question": "Juan _______ tomar un café esta tarde. (querer)",
+            "options": [
+                "quiere",
+                "quera",
+                "quiera"
+            ],
+            "correct": 0
+        },
+        {
+            "question": "¿Y tú, ¿qué haces?",
+            "options": [
+                "Soy profesora",
+                "Vivo en Málaga",
+                "Tengo dos hijos"
+            ],
+            "correct": 0
+        },
+        {
+            "question": "Y vosotros, ¿qué hacéis? \n– ____ en una agencia de viajes.",
+            "options": [
+                "trabajo",
+                "trabajan",
+                "trabajamos"
+            ],
+            "correct": 2
+        },
+        {
+            "question": "¿Quién es Juan? Juan _____________ un chico alto, rubio y muy guapo.",
+            "options": [
+                "eres",
+                "son",
+                "es"
+            ],
+            "correct": 2
+        },
+        {
+            "question": "_______________ desayuno es mi parte favorita del día.",
+            "options": [
+                "El",
+                "La",
+                "Las"
+            ],
+            "correct": 0
+        },
+        {
+            "question": "Mi madre y yo ___________ altas.",
+            "options": [
+                "Soy",
+                "Es",
+                "Somos"
+            ],
+            "correct": 2
+        },
+        {
+            "question": "Las papeleras ___________ delante de la mesa. (estar)",
+            "options": [
+                "están",
+                "estáis",
+                "estamos"
+            ],
+            "correct": 0
+        },
+        {
+            "question": "Hoy yo _________ muy contento porque mis padres van a visitarme.",
+            "options": [
+                "soy",
+                "es",
+                "estoy"
+            ],
+            "correct": 2
+        },
+        {
+            "question": "¿De dónde _________ José? – __________ de Argentina.",
+            "options": [
+                "es / está",
+                "está / es",
+                "es / es "
+            ],
+            "correct": 2
+        },
+        {
+            "question": "Cada día por la mañana nosotros _________________ juntos. (desayunar)",
+            "options": [
+                "desayunáis",
+                "desayunas",
+                "desayunamos"
+            ],
+            "correct": 2
+        },
+        {
+            "question": "¿Dónde _____________ vosotros? (vivir)",
+            "options": [
+                "viven",
+                "vivimos",
+                "vivís"
+            ],
+            "correct": 2
+        },
+        {
+            "question": "¿A qué hora _______________ a casa vosotros? (venir)",
+            "options": [
+                "vienís",
+                "venís",
+                "vienes"
+            ],
+            "correct": 1
+        },
+        {
+            "question": "Todos los días a las 14:30 ____________ mucha hambre.",
+            "options": [
+                "soy",
+                "tengo",
+                "estoy"
+            ],
+            "correct": 1
+        },
+        {
+            "question": "¿Cómo estás? Yo __________ bien gracias.",
+            "options": [
+                "estoy",
+                "tengo",
+                "soy"
+            ],
+            "correct": 0
+        },
+        {
+            "question": "¿Cuántos años __________ tu padre? (tener)",
+            "options": [
+                "tiene",
+                "tengo",
+                "tienes"
+            ],
+            "correct": 0
+        },
+        {
+            "question": "Las papeleras ___________ delante de la mesa.",
+            "options": [
+                "están",
+                "estáis",
+                "estamos"
+            ],
+            "correct": 0
+        },
+        {
+            "question": "¿Cómo estás? Yo _______ bien gracias.",
+            "options": [
+                "estoy",
+                "soy",
+                "tengo"
+            ],
+            "correct": 0
+        },
+        {
+            "question": "La casa de mi prima _______ muy grande.",
+            "options": [
+                "está",
+                "es",
+                "tiene"
+            ],
+            "correct": 1
+        },
+        {
+            "question": "Todos los días a las 14:30 _______ mucha hambre.",
+            "options": [
+                "soy",
+                "estoy",
+                "tengo"
+            ],
+            "correct": 2
+        },
+        {
+            "question": "___________ calor.",
+            "options": [
+                "tenemos",
+                "somos",
+                "estamos"
+            ],
+            "correct": 0
+        },
+        {
+            "question": "¿Dónde _______________ una farmacia?",
+            "options": [
+                "es",
+                "está",
+                "hay"
+            ],
+            "correct": 2
+        },
+        {
+            "question": "María ___________ contento porque tiene un buen trabajo.",
+            "options": [
+                "está",
+                "es",
+                "hay"
+            ],
+            "correct": 0
+        },
+        {
+            "question": "Mi hermano __________ doce años.",
+            "options": [
+                "tiene",
+                "es",
+                "está"
+            ],
+            "correct": 0
+        },
+        {
+            "question": "Teresa y yo ____________ colombianas.",
+            "options": [
+                "somos",
+                "son",
+                "estamos"
+            ],
+            "correct": 0
+        },
+        {
+            "question": "Javier ____________ 38 años.",
+            "options": [
+                "es",
+                "tiene",
+                "está"
+            ],
+            "correct": 1
+        },
+        {
+            "question": "Ana normalmente ____________ tranquila, pero hoy ____________ nerviosa.",
+            "options": [
+                "es / está",
+                "es / es",
+                "está / es"
+            ],
+            "correct": 0
+        },
+        {
+            "question": "Nosotros ____________ una paella de pescado",
+            "options": [
+                "comemos",
+                "vivimos",
+                "bebemos"
+            ],
+            "correct": 0
+        },
+        {
+            "question": "De dónde vienes? __________ del trabajo.",
+            "options": [
+                "venió",
+                "viene",
+                "vengo"
+            ],
+            "correct": 2
+        },
+        {
+            "question": "¿_______ es tu madre?",
+            "options": [
+                "Quién",
+                "Cuál",
+                "Qué"
+            ],
+            "correct": 0
+        },
+        {
+            "question": "¿______ años tienes?",
+            "options": [
+                "Quién",
+                "Cuántos",
+                "Dónde"
+            ],
+            "correct": 1
+        },
+        {
+            "question": "______ treinta años.",
+            "options": [
+                "Soy",
+                "Estoy",
+                "Tengo"
+            ],
+            "correct": 2
+        },
+        {
+            "question": "Javier ______ de Granada, pero ______ en Salamanca.",
+            "options": [
+                "es-está ",
+                "es-es",
+                "está-es"
+            ],
+            "correct": 0
+        },
+        {
+            "question": "¿______ unos libros en la mesa?",
+            "options": [
+                "Están",
+                "Hay",
+                "Está"
+            ],
+            "correct": 1
+        },
+        {
+            "question": "¿__________ un colegio en tu barrio?",
+            "options": [
+                "Ay",
+                "Ahí",
+                "Hay"
+            ],
+            "correct": 2
+        },
+        {
+            "question": "Voy a beber agua porque tengo _____________",
+            "options": [
+                "calor",
+                "sed",
+                "frío"
+            ],
+            "correct": 1
+        },
+        {
+            "question": "Ramón __________ en la cocina.",
+            "options": [
+                "es",
+                "está",
+                "este"
+            ],
+            "correct": 1
+        },
+        {
+            "question": "Javier __________ 39 años.",
+            "options": [
+                "tiene",
+                "es",
+                "tengo"
+            ],
+            "correct": 0
+        },
+        {
+            "question": "Juan y yo ___________ hasta las diez de la noche.",
+            "options": [
+                "trabajamos",
+                "trabajo",
+                "trabaja"
+            ],
+            "correct": 0
+        },
+        {
+            "question": "En este piso no ___________ calefacción",
+            "options": [
+                "está",
+                "hay",
+                "tiene"
+            ],
+            "correct": 1
+        },
+        {
+            "question": "¿Hay __________ farmacía por aquí cerca?",
+            "options": [
+                "un",
+                "una",
+                "la"
+            ],
+            "correct": 1
+        },
+        {
+            "question": "¿Dónde vives?",
+            "options": [
+                "Vivo en Venezuela.",
+                "Vivo a Venezuela.",
+                "Vivo Venezuela."
+            ],
+            "correct": 0
+        },
+        {
+            "question": "Juan_________de Francia, pero _________en España.",
+            "options": [
+                "es, está",
+                "es, es",
+                "está, es"
+            ],
+            "correct": 0
+        },
+        {
+            "question": "Felipe vive en Buenos Aires. - ¿ _________vive Felipe?",
+            "options": [
+                "Qué",
+                "Dónde",
+                "Cómo"
+            ],
+            "correct": 1
+        },
+        {
+            "question": "Los _________ son _________.",
+            "options": [
+                "doctores, buenes",
+                "doctors, buenes",
+                "doctores, Buenos"
+            ],
+            "correct": 2
+        },
+        {
+            "question": "Tenemos cuatro sillas _______.",
+            "options": [
+                "negras",
+                "negras",
+                "negros"
+            ],
+            "correct": 0
+        },
+        {
+            "question": "Voy a clase _______ la noche.",
+            "options": [
+                "por",
+                "de",
+                "en"
+            ],
+            "correct": 0
+        },
+        {
+            "question": "¿______ primos tienes?",
+            "options": [
+                "cuántos",
+                "dónde",
+                "qué"
+            ],
+            "correct": 0
+        },
+        {
+            "question": "Él ______ carne muchas veces a la semana.",
+            "options": [
+                "como",
+                "comes",
+                "come"
+            ],
+            "correct": 2
+        },
+        {
+            "question": "¿Qué haces los fines de semana? – Normalmente yo _____ al cine, ______ al fútbol con mis amigos.",
+            "options": [
+                "voy / juego",
+                "ir / jugar",
+                "voy / jugo"
+            ],
+            "correct": 0
+        },
+        {
+            "question": "En Barcelona _____________ muchos taxis.",
+            "options": [
+                "tiene",
+                "hay",
+                "es"
+            ],
+            "correct": 1
+        },
+        {
+            "question": "¿Cuántos años __________ tú? - _________ 25.",
+            "options": [
+                "tenes / tengo",
+                "tienes / tengo",
+                "tener / teno"
+            ],
+            "correct": 1
+        },
+        {
+            "question": "Manuel __________ una carta a su novia.",
+            "options": [
+                "escribio",
+                "escribes",
+                "escribe"
+            ],
+            "correct": 2
+        },
+        {
+            "question": "60",
+            "options": [
+                "setenta",
+                "cincuenta",
+                "sesenta"
+            ],
+            "correct": 2
+        },
+        {
+            "question": "blue",
+            "options": [
+                "azul",
+                "morado",
+                "negro"
+            ],
+            "correct": 0
+        },
+        {
+            "question": "invierno",
+            "options": [
+                "fall",
+                "winter",
+                "spring"
+            ],
+            "correct": 1
+        },
+        {
+            "question": "¿Tú __________ una fiesta a tus abuelos, por qué? (dar)",
+            "options": [
+                "doy",
+                "das",
+                "da"
+            ],
+            "correct": 1
+        },
+        {
+            "question": "¿____________ está Laura? – Está en Las Palmas",
+            "options": [
+                "dónde",
+                "qué",
+                "cuándo"
+            ],
+            "correct": 0
+        },
+        {
+            "question": " Yo __________ deporte en el parque.",
+            "options": [
+                "hago",
+                "hace",
+                "haigo"
+            ],
+            "correct": 0
+        }
+    ]
+}

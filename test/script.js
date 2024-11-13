@@ -60,7 +60,7 @@ async function getLeaderboard() {
 async function showResults() {
     endTime = new Date();
     const timeTaken = Math.floor((endTime - startTime) / 1000);
-
+    
     let score = 0;
     const answersReview = [];
     
